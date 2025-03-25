@@ -174,9 +174,9 @@ function exportChanges() {
         let message = "";
 
         if (currentTab === 'watches') {
-            message = "Промените са копирани! Замести в watches.js!";
+            message = "Промените са копирани! Замести в watches.js! (Или просто използвай бутона '✅' за автоматично актуализиране на данните, ако сайта е на сървър)";
         } else {
-            message = "Промените са копирани! Замести в posts.js!";
+            message = "Промените са копирани! Замести в posts.js! (Или просто използвай бутона '✅' за автоматично актуализиране на данните, ако сайта е на сървър)";
         }         
         
         alert(message);
@@ -193,17 +193,38 @@ document.getElementById('searchInputPosts').addEventListener('input', function (
     filterItems(searchTerm);
 });
 
-document.getElementById('replaceWatches').addEventListener('click', function() {
+function filterItems(searchTerm) {
+    const items = document.querySelectorAll('.watch-item, .post-item');
+    items.forEach(item => {
+        const text = item.textContent.toLowerCase();
+        item.style.display = text.includes(searchTerm) ? 'flex' : 'none';
+    });
+}
+
+function updateDataFiles() {
     const jsonOutput = document.getElementById('jsonOutput').textContent;
 
-    try {
-        const jsonString = jsonOutput
+    let jsonString = "";
+    let url = "";
+
+    if (currentTab === 'watches') {
+        jsonString = jsonOutput
             .replace(/^const watches = /, '')
             .replace(/;$/,'');
 
+        url = "php/update_data_watches.php";
+    } else {
+        jsonString = jsonOutput
+            .replace(/^const posts = /, '')
+            .replace(/;$/,'');
+
+        url = "php/update_data_posts.php";
+    }         
+    
+    try {
         const watchesData = JSON.parse(jsonString);
 
-        fetch("replace_watches.php", {
+        fetch(url, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -212,22 +233,16 @@ document.getElementById('replaceWatches').addEventListener('click', function() {
         })
         .then(response => response.json())
         .then(data => {
-            console.log(data.message || "Файлът с часовници е актуализиран успешно!");
+            alert(data.message || "Елементите са актуализирани успешно!");
         })
         .catch(error => {
-            console.error("Грешка:", error);
-            console.log("Грешка при актуализирането на watches.js.");
+            alert("Фатална грешка 000.");
         });
     } catch (error) {
-        console.log("Невалиден JSON. Провери jsonOutput.");
+        alert("Фатална грешка 001.");
     }
-});
+}
 
-
-function filterItems(searchTerm) {
-    const items = document.querySelectorAll('.watch-item, .post-item');
-    items.forEach(item => {
-        const text = item.textContent.toLowerCase();
-        item.style.display = text.includes(searchTerm) ? 'flex' : 'none';
-    });
+function backToSite() {
+    window.location.href = "index.html";
 }

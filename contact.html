@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контакти - Casovnici.bg</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="css/contact.css">
+    <link rel="stylesheet" href="css/footer.css">
+</head>
+<body>
+    <nav>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle">
+        <label for="nav-toggle" class="hamburger">☰</label>
+
+        <a href="index.html" class="logo">Casovnici.bg</a>
+        <ul>
+            <li><a href="promo.html">Нови часовници и промоции</a></li>
+            <li><a href="shop.html">Продуктов каталог</a></li>
+            <li><a href="blog.html">Блог</a></li>
+            <li><a href="about.html">За нас</a></li>
+            <li><a href="contact.html" class="active">Контакти</a></li>
+        </ul>
+    </nav>
+
+    <main class="contact-page">       
+        <div class="contact-container">
+            <div class="contact-info">
+                <h2>Свържете се с нас</h2>
+                <br>
+                <div class="info-item">
+                    <h3>Имейл</h3>
+                    <p>miro@abv.bg</p>
+                </div>
+                <div class="info-item">
+                    <h3>Телефон</h3>
+                    <p>+359 890 123 456</p>
+                </div>
+                <div class="info-item">
+                    <h3>Адрес</h3>
+                    <p>бул. Съединение №46<br> 6300 Хасково<br>България</p>
+                </div>
+                <div class="info-item">
+                    <h3>Работно време</h3>
+                    <p>Вторник - Събота: 09:00 - 17:00ч.<br>
+                    Неделя и понеделник: Затворено</p>
+                </div>
+            </div>
+
+            <div class="contact-form">
+                <h2>Пишете ни</h2>
+                <br>
+                <form id="inquiryForm">
+                    <div class="form-group">
+                        <label for="name">Имена</label>
+                        <input type="text" id="name" name="name" placeholder="Вашите имена" required autocomplete="name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Имейл</label>
+                        <input type="email" id="email" name="email" placeholder="primer@email.com" required autocomplete="email">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Телефон</label>
+                        <input type="tel" id="phone" name="phone" placeholder="+359 XXX XXX XXX" required pattern="^(\+359|0)[0-9]{9}$">
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Тема</label>
+                        <input type="text" id="subject" name="subject" placeholder="Запитване или поръчка" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Съобщение</label>
+                        <textarea id="message" name="message" rows="6" placeholder="Искам да си закупя (име на часовник). Моят адрес за доставка е..." required></textarea>
+                    </div>
+                    <button type="submit" class="button">Изпрати</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Свържете се с нас</h4>
+                <p>Имейл: miro@abv.bg</p>
+                <p>Тел: +359 890 123 456</p>
+            </div>
+            <div class="footer-section">
+                <h4>Последвайте ни</h4>
+                <div class="social-links">
+                    <a href="https://instagram.com" target="_blank">Инстаграм</a>
+                    <a href="https://facebook.com" target="_blank">Фейсбук</a>
+                    <a href="https://x.com" target="_blank">Х</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Casovnici.bg. Всички права са запазени.</p>
+        </div>
+    </footer>
+
+    <script src="js/contact.js"></script>
+</body>
+</html>

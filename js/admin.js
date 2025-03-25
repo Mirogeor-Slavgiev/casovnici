@@ -197,7 +197,11 @@ document.getElementById('replaceWatches').addEventListener('click', function() {
     const jsonOutput = document.getElementById('jsonOutput').textContent;
 
     try {
-        const watchesData = JSON.parse(jsonOutput);
+        const jsonString = jsonOutput
+            .replace(/^const watches = /, '')
+            .replace(/;$/,'');
+
+        const watchesData = JSON.parse(jsonString);
 
         fetch("replace_watches.php", {
             method: "POST",
@@ -208,14 +212,14 @@ document.getElementById('replaceWatches').addEventListener('click', function() {
         })
         .then(response => response.json())
         .then(data => {
-            console.log(data.message);
+            console.log(data.message || "Файлът с часовници е актуализиран успешно!");
         })
         .catch(error => {
-            console.error("Error:", error);
-            console.log("There was an error while updating watches.js.");
+            console.error("Грешка:", error);
+            console.log("Грешка при актуализирането на watches.js.");
         });
     } catch (error) {
-        console.log("Invalid JSON data. Please check the jsonOutput.");
+        console.log("Невалиден JSON. Провери jsonOutput.");
     }
 });
 
